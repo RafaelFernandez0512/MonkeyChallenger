@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:MonkeyChallenger.Effects"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             x:Class="MonkeyChallenger.Views.MainPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+            <yummy:PancakeView CornerRadius="0,0,0,50">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="1.2*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <CarouselView ItemsSource="{Binding Destinations}" 
+                                  Grid.ColumnSpan="2" 
+                                  Grid.RowSpan="3"
+                                  CurrentItem="{Binding CurrentPicture}">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Image}"
+                                       Aspect="AspectFill"/>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <Label FontSize="20"
+                       TextColor="White"
+                           Margin="15,20,0,0"
+                           FontAttributes="Bold"
+                           Grid.ColumnSpan="2">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Hi theres,"/>
+                                <Span Text="{Static system:Environment.NewLine}"/>
+                                <Span Text="Where do you want to go?"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Grid.Column="1"
+                           FontFamily="{StaticResource FontAwesomeSolid}"
+                           Text=""
+                           Margin="0,0,15,0"
+                           HorizontalOptions="EndAndExpand"
+                           FontSize="28"
+                           TextColor="White"
+                           VerticalOptions="Center"/>
+                    <yummy:PancakeView Grid.ColumnSpan="2"
+                                       Grid.Row="1"
+                                       BackgroundColor="white"
+                                       CornerRadius="12"
+                                       VerticalOptions="CenterAndExpand"
+                                       Margin="15,0,15,60"
+                                       Opacity="0.6">
+                        <Grid Padding="15,8,10,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="20" VerticalOptions="Center" 
+                               TextColor="Gray"
+                                 FontFamily="{StaticResource FontAwesomeSolid}" 
+                               Text=""
+                               HorizontalOptions="EndAndExpand"   
+                               Margin="0,0,12,0" />
+                            <yummy:PancakeView Grid.Column="1"
+                                   BorderColor="Black"
+                                   CornerRadius="5"
+                                   BorderThickness="1"
+                                               
+                                   >
+                                <Entry 
+                                   FontFamily="{StaticResource LatoRegular}"
+                               Placeholder="Need to traslate something?"
+                                    x:Name="TextEntry"
+                                    Completed="Entry_Completed"
+                               PlaceholderColor="Gray">
+                                    <Entry.Effects>
+                                        <local:EntryEffects/>
+                                    </Entry.Effects>
+                                </Entry>
+                            </yummy:PancakeView>
+                        </Grid>
+                    </yummy:PancakeView>
+                    <yummy:PancakeView Grid.ColumnSpan="2"
+                                       Grid.Row="2"
+                                       BackgroundColor="white"
+                                       Opacity="0.7"
+                                       CornerRadius="12,0,0,0">
+                        <Label Margin="20,10,0,0"
+                               VerticalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding CurrentPicture.Title}" FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+                                    <Span Text="{Static system:Environment.NewLine}"/>
+                                    <Span Text="Recommendation"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </yummy:PancakeView>
+                </Grid>
+            </yummy:PancakeView>
+            <Label Text="Pictures"
+                   FontSize="20"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Row="1"
+                   Margin="15,0,0,0"
+                   HorizontalOptions="StartAndExpand"
+                   />
+            <Button Text="Add new"
+                    Grid.Row="1"
+                    FontSize="14"
+                    Command="{Binding AddNewImageCommand}"
+                    TextColor="DodgerBlue"
+                    BackgroundColor="Transparent"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="EndAndExpand"/>
+            <CollectionView Grid.Row="2"
+                          ItemsSource="{Binding MyPictures,Mode=TwoWay}">
+                <CollectionView.EmptyView>
+                    <Label 
+                           HorizontalTextAlignment="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="No pictures yet give you best shot! "/>
+                                <Span Text="" FontFamily="{StaticResource FontAwesomeSolid}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="2"
+                                     HorizontalItemSpacing="20"
+                                     VerticalItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10,0">
+                            <yummy:PancakeView
+                                           CornerRadius="12"
+                                          HeightRequest="120"
+                                WidthRequest="200" 
+                                IsClippedToBounds="true"
+ >
+                                <Grid >
+                                    <Image Aspect="AspectFill"
+                                       Source="{Binding Image}"/>
+                                    <yummy:PancakeView BackgroundGradientStartColor="Transparent" 
+                                                       BackgroundGradientEndColor="#222"
+                                                       VerticalOptions="FillAndExpand"
+                                                       HorizontalOptions="FillAndExpand"    >
+                                        <Label TextColor="White"
+                                               Text="{Binding Title}"
+                                           HorizontalOptions="EndAndExpand"
+                                       />
+                                    </yummy:PancakeView>
+                                </Grid>
+                            </yummy:PancakeView>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
