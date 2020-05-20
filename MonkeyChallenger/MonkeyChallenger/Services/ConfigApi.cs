@@ -6,9 +6,9 @@ namespace MonkeyChallenger.Services
 {
    public static class ConfigApi
     {
-		public static string ComputerVisionApiKey = "ce6f8e8275344a88af35df00ecaec963";
-		public static string TranslationsApiKey = "e6ffe594c66b497b952047721bb3e52d";
-		public static string BingImageSearch = "e5933bab2c5c4a45be048bef9d9a5cf4";
+		public static string ComputerVisionApiKey = "ApiKey";
+		public static string TranslationsApiKey = "ApiKey";
+		public static string BingImageSearch = "ApiKey";
 		public static string DestinationKey = "DestinationKey";
 		public static string PictureKy = "PictureKey";
 		public static string CacheChallenger = "CacheChallenger";
