@@ -28,6 +28,7 @@ namespace MonkeyChallenger.ViewModels
        
         IAPIComputerVision computerVision;
         public bool IsPosting { get; set; }
+        public string Photo { get; set; }
         public Color Color { get; set; } = Color.SteelBlue;
         public AddImagePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAPIComputerVision computerVision) : base(navigationService, dialogService)
         {
@@ -48,6 +49,7 @@ namespace MonkeyChallenger.ViewModels
                     {
                          file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions { PhotoSize = PhotoSize.Medium });
                         Picture.Image = file.Path;
+                        Photo = file.Path;
                         IsVisible = false;
                     }
                    
@@ -56,6 +58,7 @@ namespace MonkeyChallenger.ViewModels
                     {
                          file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions { PhotoSize = PhotoSize.Medium });
                         Picture.Image = file.Path;
+                        Photo = file.Path;
                         IsVisible = false;
                     }
                     break;

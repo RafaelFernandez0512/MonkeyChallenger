@@ -164,4 +164,19 @@
       <Name>MonkeyChallenger</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\TravelMonkey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\en.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\es.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\nl.png" />
+  </ItemGroup>
 </Project>
